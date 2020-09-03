@@ -9,23 +9,25 @@
 /* Begin PBXBuildFile section */
 		1179D03225013462003850E8 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1179D03125013462003850E8 /* AppDelegate.swift */; };
 		1179D03425013462003850E8 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1179D03325013462003850E8 /* SceneDelegate.swift */; };
-		1179D03625013462003850E8 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1179D03525013462003850E8 /* ViewController.swift */; };
+		1179D03625013462003850E8 /* TimerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1179D03525013462003850E8 /* TimerViewController.swift */; };
 		1179D03925013462003850E8 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1179D03725013462003850E8 /* Main.storyboard */; };
 		1179D03C25013462003850E8 /* ToastmasterTimer.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 1179D03A25013462003850E8 /* ToastmasterTimer.xcdatamodeld */; };
 		1179D03E25013464003850E8 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1179D03D25013464003850E8 /* Assets.xcassets */; };
 		1179D04125013464003850E8 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1179D03F25013464003850E8 /* LaunchScreen.storyboard */; };
+		1179D04B25013A08003850E8 /* ListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1179D04A25013A08003850E8 /* ListViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		1179D02E25013462003850E8 /* ToastmasterTimer.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ToastmasterTimer.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		1179D03125013462003850E8 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		1179D03325013462003850E8 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		1179D03525013462003850E8 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		1179D03525013462003850E8 /* TimerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimerViewController.swift; sourceTree = "<group>"; };
 		1179D03825013462003850E8 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		1179D03B25013462003850E8 /* ToastmasterTimer.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = ToastmasterTimer.xcdatamodel; sourceTree = "<group>"; };
 		1179D03D25013464003850E8 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		1179D04025013464003850E8 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		1179D04225013464003850E8 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		1179D04A25013A08003850E8 /* ListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -60,7 +62,8 @@
 			children = (
 				1179D03125013462003850E8 /* AppDelegate.swift */,
 				1179D03325013462003850E8 /* SceneDelegate.swift */,
-				1179D03525013462003850E8 /* ViewController.swift */,
+				1179D03525013462003850E8 /* TimerViewController.swift */,
+				1179D04A25013A08003850E8 /* ListViewController.swift */,
 				1179D03725013462003850E8 /* Main.storyboard */,
 				1179D03D25013464003850E8 /* Assets.xcassets */,
 				1179D03F25013464003850E8 /* LaunchScreen.storyboard */,
@@ -141,9 +144,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				1179D03625013462003850E8 /* ViewController.swift in Sources */,
+				1179D03625013462003850E8 /* TimerViewController.swift in Sources */,
 				1179D03C25013462003850E8 /* ToastmasterTimer.xcdatamodeld in Sources */,
 				1179D03225013462003850E8 /* AppDelegate.swift in Sources */,
+				1179D04B25013A08003850E8 /* ListViewController.swift in Sources */,
 				1179D03425013462003850E8 /* SceneDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -291,6 +295,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = QJZ8C3M7CD;
 				INFOPLIST_FILE = ToastmasterTimer/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -309,6 +314,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = QJZ8C3M7CD;
 				INFOPLIST_FILE = ToastmasterTimer/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
