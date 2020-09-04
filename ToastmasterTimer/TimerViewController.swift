@@ -7,6 +7,8 @@
 //
 
 import UIKit
+import AudioToolbox
+import CoreMotion
 
 private let availableTimes = [
     30,
@@ -21,6 +23,14 @@ private let availableTimes = [
     540,
     600
 ]
+
+enum CurrentColor: Int {
+    case green = 0
+    case yellow
+    case red
+    case indigo
+}
+
 class TimerViewController: UIViewController {
     
     /// picker view section
@@ -38,12 +48,15 @@ class TimerViewController: UIViewController {
     var currentIndex: Int?
     var startTimeStamp: Date?
     var timer: CADisplayLink?
+    // stand for vibrate when green, yellow, red, indigo
+    var currentStatus:[Bool] = [false, false, false, false]
+    var shouldStopVibrate = false
     
     override func viewDidLoad() {
         super.viewDidLoad()
         render()
     }
-    
+
     func render() {
         self.title = "Timer"
         
@@ -68,6 +81,9 @@ class TimerViewController: UIViewController {
         self.nameTextField.becomeFirstResponder()
         timer = CADisplayLink(target: self, selector: #selector(updateTimerProgress))
         timer?.add(to: RunLoop.current, forMode: .common)
+        
+        // reset status
+        currentStatus = [false, false, false, false]
     }
     
     @objc func stopTimer() {
@@ -80,16 +96,17 @@ class TimerViewController: UIViewController {
     }
     
     func implementStopTimer(action: UIAlertAction) {
-        self.pickerViewContainer.isHidden = false
-        self.timerContainer.isHidden = true
-        if let currentIndex = self.currentIndex {
-            self.pickerView.selectRow(currentIndex, inComponent: 0, animated: false)
-        }
         
         timer?.invalidate()
         timer = nil
         
-        //TODO: save the record to the record manager
+        self.pickerViewContainer.isHidden = false
+        self.timerContainer.isHidden = true
+        self.view.backgroundColor = .systemBackground
+        if let currentIndex = self.currentIndex {
+            self.pickerView.selectRow(currentIndex, inComponent: 0, animated: false)
+        }
+        
         let totalTime = availableTimes[self.currentIndex!]
         let usedTime = Date().timeIntervalSince(startTimeStamp!)
         let name = self.nameTextField.text ?? ""
@@ -97,7 +114,7 @@ class TimerViewController: UIViewController {
         let record = RecordItem(name: name, totalTime: totalTime, usedTime: Int(usedTime))
         RecordManager.instance.addItem(item: record)
         
-        // add to record manager
+        self.shouldStopVibrate = true
         
         self.nameTextField.text = nil
     }
@@ -109,9 +126,74 @@ class TimerViewController: UIViewController {
         
         let totalTime = TimeInterval(availableTimes[currentIndex])
         let timePass = Date().timeIntervalSince(timeStamp)
-        var timeLeft = Int(totalTime - timePass)
+        let timeLeft = Int(totalTime - timePass)
         
         self.timeLabel.text = formatTimeString(second: timeLeft)
+        
+        self.handleScreenChange(totalTime: Int(totalTime), timeLeft: timeLeft)
+    }
+    
+    func handleScreenChange(totalTime: Int, timeLeft: Int) {
+        if totalTime >= 300 {
+            if timeLeft > 120 {
+                self.view.backgroundColor = .systemBackground
+            } else if timeLeft > 60 {
+                self.view.backgroundColor = .systemGreen
+                vibrateFor(color: .green)
+            } else if timeLeft > 0 {
+                self.view.backgroundColor = .systemYellow
+                vibrateFor(color: .yellow)
+            } else if timeLeft > -30 {
+                self.view.backgroundColor = .systemRed
+                vibrateFor(color: .red)
+            } else  {
+                self.view.backgroundColor = .systemIndigo
+                vibrateFor(color: .indigo)
+            }
+            
+        } else {
+            if timeLeft > 60 {
+                self.view.backgroundColor = .systemBackground
+            } else if timeLeft > 30 {
+                self.view.backgroundColor = .systemGreen
+                vibrateFor(color: .green)
+            } else if timeLeft > 0 {
+                self.view.backgroundColor = .systemYellow
+                vibrateFor(color: .yellow)
+            } else if timeLeft > -15 {
+                self.view.backgroundColor = .systemRed
+                vibrateFor(color: .red)
+            } else  {
+                self.view.backgroundColor = .systemIndigo
+                vibrateFor(color: .indigo)
+            }
+        }
+    }
+    
+    func vibrateFor(color: CurrentColor) {
+        
+        if self.currentStatus[color.rawValue] == false {
+            self.currentStatus[color.rawValue] = true
+            startRecurringVibrate()
+        }
+    }
+    
+    func startRecurringVibrate() {
+        shouldStopVibrate = false
+        DispatchQueue.global().async {
+            while !self.shouldStopVibrate {
+                DispatchQueue.main.async {
+                    AudioServicesPlaySystemSound(kSystemSoundID_Vibrate)
+                }
+                Thread.sleep(forTimeInterval: 1)
+            }
+        }
+    }
+    
+    override func motionBegan(_ motion: UIEvent.EventSubtype, with event: UIEvent?) {
+        if motion == .motionShake {
+            self.shouldStopVibrate = true
+        }
     }
 }
 

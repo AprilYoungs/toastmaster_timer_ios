@@ -37,7 +37,6 @@
                                         </state>
                                     </button>
                                 </subviews>
-                                <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                 <constraints>
                                     <constraint firstItem="p5w-4V-RaN" firstAttribute="top" secondItem="JgH-DM-blo" secondAttribute="bottom" constant="40" id="52g-oJ-yjT"/>
                                     <constraint firstItem="p5w-4V-RaN" firstAttribute="leading" secondItem="Xqc-Ox-BDC" secondAttribute="leading" constant="50" id="Psw-ag-uN2"/>
@@ -73,7 +72,6 @@
                                         </subviews>
                                     </stackView>
                                 </subviews>
-                                <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                 <constraints>
                                     <constraint firstAttribute="bottom" secondItem="kuT-6X-Mga" secondAttribute="bottom" id="CpN-H0-XEp"/>
                                     <constraint firstItem="kuT-6X-Mga" firstAttribute="leading" secondItem="4y2-Bg-VcK" secondAttribute="leading" id="TGk-4y-WOU"/>

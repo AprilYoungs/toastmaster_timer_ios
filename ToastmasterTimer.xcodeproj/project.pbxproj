@@ -21,7 +21,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		1179D02E25013462003850E8 /* ToastmasterTimer.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ToastmasterTimer.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		1179D02E25013462003850E8 /* T-Timer.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "T-Timer.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		1179D03125013462003850E8 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		1179D03325013462003850E8 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
 		1179D03525013462003850E8 /* TimerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimerViewController.swift; sourceTree = "<group>"; };
@@ -58,7 +58,7 @@
 		1179D02F25013462003850E8 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				1179D02E25013462003850E8 /* ToastmasterTimer.app */,
+				1179D02E25013462003850E8 /* T-Timer.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -99,7 +99,7 @@
 			);
 			name = ToastmasterTimer;
 			productName = ToastmasterTimer;
-			productReference = 1179D02E25013462003850E8 /* ToastmasterTimer.app */;
+			productReference = 1179D02E25013462003850E8 /* T-Timer.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -313,7 +313,7 @@
 					"@executable_path/Frameworks",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = YOLO.ToastmasterTimer;
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = "T-Timer";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -332,7 +332,7 @@
 					"@executable_path/Frameworks",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = YOLO.ToastmasterTimer;
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = "T-Timer";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
