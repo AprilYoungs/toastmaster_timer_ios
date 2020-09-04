@@ -25,7 +25,7 @@ class ListViewController: UIViewController {
     
     func render() {
         self.title = "Saved list"
-        self.tableView.contentInset = UIEdgeInsets(top: 20, left: 16, bottom: 20, right: -16)
+        self.tableView.contentInset = UIEdgeInsets(top: 20, left: 0, bottom: 20, right: 0)
         self.tableView.tableFooterView = UIView()
     }
     
