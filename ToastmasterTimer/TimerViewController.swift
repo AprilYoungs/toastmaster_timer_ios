@@ -62,11 +62,8 @@ class TimerViewController: UIViewController {
         self.timerContainer.isHidden = false
         
         let index = self.pickerView.selectedRow(inComponent: 0)
-        let second = availableTimes[index]
         self.currentIndex = index
         self.startTimeStamp = Date()
-        
-        print("start with time-->\(second)")
         
         self.nameTextField.becomeFirstResponder()
         timer = CADisplayLink(target: self, selector: #selector(updateTimerProgress))
@@ -85,10 +82,24 @@ class TimerViewController: UIViewController {
     func implementStopTimer(action: UIAlertAction) {
         self.pickerViewContainer.isHidden = false
         self.timerContainer.isHidden = true
+        if let currentIndex = self.currentIndex {
+            self.pickerView.selectRow(currentIndex, inComponent: 0, animated: false)
+        }
         
         timer?.invalidate()
         timer = nil
         
+        //TODO: save the record to the record manager
+        let totalTime = availableTimes[self.currentIndex!]
+        let usedTime = Date().timeIntervalSince(startTimeStamp!)
+        let name = self.nameTextField.text ?? ""
+        
+        let record = RecordItem(name: name, totalTime: totalTime, usedTime: Int(usedTime))
+        RecordManager.instance.addItem(item: record)
+        
+        // add to record manager
+        
+        self.nameTextField.text = nil
     }
     
     @objc func updateTimerProgress() {
@@ -100,11 +111,7 @@ class TimerViewController: UIViewController {
         let timePass = Date().timeIntervalSince(timeStamp)
         var timeLeft = Int(totalTime - timePass)
         
-        let isMinus = timeLeft < 0
-        timeLeft = isMinus ? -timeLeft : timeLeft
-        let min = timeLeft / 60
-        let sec = timeLeft % 60
-        self.timeLabel.text = String(format: "%@%02d:%02d", isMinus ? "-": "", min, sec)
+        self.timeLabel.text = formatTimeString(second: timeLeft)
     }
 }
 
@@ -116,8 +123,6 @@ extension TimerViewController: UIPickerViewDataSource, UIPickerViewDelegate {
         return availableTimes.count
     }
     func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
-        let min = availableTimes[row] / 60
-        let sec = availableTimes[row] % 60
-        return String(format: "%02d:%02d", min, sec)
+        return formatTimeString(second: availableTimes[row])
     }
 }
